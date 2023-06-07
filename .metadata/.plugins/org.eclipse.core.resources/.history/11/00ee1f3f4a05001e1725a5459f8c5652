@@ -1,0 +1,90 @@
+package logica;
+import java.util.Scanner;
+
+import javax.swing.JOptionPane;
+
+import ModeloDatos;
+
+public class Principal {
+	
+	ModeloDatos miData;
+
+	public  Principal() {
+		
+		miData=new ModeloDatos();		
+		
+		menu();
+		
+	}
+	
+	public void crear() {
+		
+		Perro perro1 = new Perro();
+		perro1.setIdentidad(JOptionPane.showInputDialog("Ingrese una identidad para la mascota"));
+		perro1.setNombre(JOptionPane.showInputDialog("Ingrese en nombre del perro "));
+		perro1.setColor(JOptionPane.showInputDialog("Ingrese el color del perro"));
+		perro1.setEdad(Integer.parseInt(JOptionPane.showInputDialog("Ingrese la edad")));
+		perro1.setGenero(JOptionPane.showInputDialog("Ingrese el genero masculino/femenino"));
+		perro1.setEspecie(JOptionPane.showInputDialog("Ingrese la raza del perro"));
+		miData.crearPerro(perro1);	
+	}
+	
+	public void mostrar() {
+		miData.mostrar();
+	}
+	
+	public void consulta() {
+		String user=JOptionPane.showInputDialog("Ingrese la identidad para consultar");
+		miData.Consultar(user);
+	}
+
+	public void menu() {
+		
+		String opc="";
+		
+		do {
+			
+			crear();
+			
+			opc=JOptionPane.showInputDialog("Desea seguir ingresando?");
+			
+			
+		} while (opc.equalsIgnoreCase("si"));
+		
+		int opc2=0;
+		
+		do {
+			
+			opc2=Integer.parseInt(JOptionPane.showInputDialog("Ingrese la opcion  \n" +
+			"1. Mostrar Datos \n " +
+			"2. Consultar perro \n "+
+			"3. Mostrar sonido \n "+
+			"4. Movimientos \n" +
+			"5. Salir"));
+			
+			switch (opc2) {
+			case 1:
+				mostrar();
+				break;
+			case 2:
+				consulta();
+				break;	
+			case 3:
+				miData.ladrar();
+				break;	
+			case 4:
+				miData.movimientos();
+				break;	
+			default:
+				break;
+			}
+			
+			
+		} while (opc2!=5);
+		
+	}
+
+		
+	}
+
+
